@@ -139,6 +139,30 @@ function palindromeMessage(isPalindrome) {
 
 // Happy Numbers
 
+function checkHappyNumber() {
+    let userInput = getUserInput("Enter a number to check if it is a Happy Number: ");
+    let currentNumber = userInput;
+    for (let i = 0; i < 1000; i++) {
+        if (parseInt(currentNumber) !== 1) {
+            let sumOfSquares = getSumOfSquares(currentNumber);
+            currentNumber = String(sumOfSquares);
+        }
+        else {
+            document.getElementById("happyNumbers").innerHTML = userInput + " is a happy number!";
+            return;
+        }
+    }
+    document.getElementById("happyNumbers").innerHTML = "After 1000 iterations, " + userInput + " has not been proven to be a happy number.";
+}
+
+function getSumOfSquares(currentNumber) {
+    let sumOfIntegers = 0;
+    for (let i = 0; i < currentNumber.length; i++) {
+        sumOfIntegers += Math.pow(parseInt(currentNumber[i]), 2);
+    }
+    return sumOfIntegers;
+}
+
 // Prime Numbers
 
 function printPrimeNumbers() {
