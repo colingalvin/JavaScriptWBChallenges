@@ -162,3 +162,21 @@ function numberIsPrime(number) {
     isPrime = true;
     return isPrime;
 }
+
+// Fibonacci
+
+function printFibonacciSequence() {
+    let userInput = getUserInput("Enter how many Fibonacci numbers you would like: ")
+    let numberToLeft = 0;
+    let numberTwoToLeft = 0;
+    let newNumber = 1;
+    let fibonacciNumbers = "";
+    for (let i = 1; i <= userInput; i++) {
+        numberTwoToLeft = numberToLeft;
+        numberToLeft = newNumber;
+        newNumber = numberTwoToLeft + numberToLeft;
+        fibonacciNumbers += newNumber + ", ";
+    }
+    fibonacciNumbers = fibonacciNumbers.slice(0, fibonacciNumbers.length - 2);
+    document.getElementById("fibonacci").innerHTML = "The first " + userInput + " numbers of the Fibonacci Sequence are: " + fibonacciNumbers;
+}
