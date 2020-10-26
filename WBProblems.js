@@ -25,7 +25,7 @@ ReverseAString();
 */
 
 // Capitalize Letter
-
+/*
 function CapitalizeFirstLetterOfEachWord(){
     let userInput = GetUserInput("Enter a string to be capitalized");
     let capitalizedUserInput = CapitalizeEachWord(userInput);
@@ -56,3 +56,50 @@ function CapitalizeLetter(letter){
 }
 
 CapitalizeFirstLetterOfEachWord();
+*/
+
+//Compress a string of characters
+
+function CompressStringOfLetters(){
+    let userInput = GetUserInput("Enter a series of letters, occasionally repeating: ")
+    let compressedUserInput = CompressString(userInput);
+    console.log(compressedUserInput);
+}
+
+function GetUserInput(userPrompt){
+    let userInput = prompt(userPrompt);
+    return userInput;
+}
+
+function CompressString(userInput){
+    let compressedInput = "";
+    let count = 1;
+    for (let i = 0; i < userInput.length; i++){
+        if (i === userInput.length - 1){
+            if (userInput[i] === userInput[i-1]){
+                compressedInput += count;
+                compressedInput += userInput[i];
+            }
+            else {
+                compressedInput += userInput[i];
+            }
+        }
+        else if (userInput[i] === userInput[i+1]){
+            count++;
+        }
+        else {
+            if(count === 1)
+            {
+                compressedInput += userInput[i];
+            }
+            else {
+                compressedInput += count;
+                compressedInput += userInput[i];
+                count = 1;
+            }
+        }
+    }
+    return compressedInput;
+}
+
+CompressStringOfLetters();
