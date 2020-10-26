@@ -2,19 +2,19 @@
 
 // Reverse a string
 
-function reverseAString(){
+function reverseAString() {
     let userInput = getUserInput("Enter a string to be reversed: ");
     let reversedUserInput = reverseInput(userInput);
     document.getElementById("reverseAString").innerHTML = reversedUserInput;
     //console.log(reversedUserInput);
 }
 
-function getUserInput(userPrompt){
+function getUserInput(userPrompt) {
     let userInput = prompt(userPrompt);
     return userInput;
 }
 
-function reverseInput(userInput){
+function reverseInput(userInput) {
     let reversedUserInput = "";
     for (let i = userInput.length - 1; i >= 0; i--) {
         reversedUserInput += userInput[i];
@@ -24,17 +24,17 @@ function reverseInput(userInput){
 
 // Capitalize Letter
 
-function capitalizeFirstLetterOfEachWord(){
+function capitalizeFirstLetterOfEachWord() {
     let userInput = getUserInput("Enter a string to be capitalized");
     let capitalizedUserInput = capitalizeEachWord(userInput);
     document.getElementById("capitalizeLetter").innerHTML = capitalizedUserInput;
     //console.log(capitalizedUserInput);
 }
 
-function capitalizeEachWord(userInput){
+function capitalizeEachWord(userInput) {
     let capitalizedInput = "";
-    for (let i = 0; i < userInput.length; i++){
-        if(i === 0 || userInput[i-1] === " "){
+    for (let i = 0; i < userInput.length; i++) {
+        if(i === 0 || userInput[i-1] === " ") {
             capitalizedInput += capitalizeLetter(userInput[i]);
         }
         else{
@@ -44,26 +44,26 @@ function capitalizeEachWord(userInput){
     return capitalizedInput;
 }
 
-function capitalizeLetter(letter){
+function capitalizeLetter(letter) {
     let capitalLetter = letter.toUpperCase();
     return capitalLetter;
 }
 
 //Compress a string of characters
 
-function compressStringOfCharacters(){
+function compressStringOfCharacters() {
     let userInput = getUserInput("Enter a series of letters, occasionally repeating: ")
     let compressedUserInput = compressString(userInput);
     document.getElementById("compressAStringOfCharacters").innerHTML = compressedUserInput;
     //console.log(compressedUserInput);
 }
 
-function compressString(userInput){
+function compressString(userInput) {
     let compressedInput = "";
     let count = 1;
-    for (let i = 0; i < userInput.length; i++){
-        if (i === userInput.length - 1){
-            if (userInput[i] === userInput[i-1]){
+    for (let i = 0; i < userInput.length; i++) {
+        if (i === userInput.length - 1) {
+            if (userInput[i] === userInput[i-1]) {
                 compressedInput += count;
                 compressedInput += userInput[i];
             }
@@ -71,7 +71,7 @@ function compressString(userInput){
                 compressedInput += userInput[i];
             }
         }
-        else if (userInput[i] === userInput[i+1]){
+        else if (userInput[i] === userInput[i+1]) {
             count++;
         }
         else {
@@ -91,33 +91,33 @@ function compressString(userInput){
 
 // Palindrome
 
-function checkPalindrome(){
+function checkPalindrome() {
     let userInput = getUserInput("Enter a word or phrase to check if it is a palindrome: ");
     let condensedUserInput = parseUserInput(userInput);
     let isPalindrome = verifyPalindrome(condensedUserInput);
     document.getElementById("palindrome").innerHTML = "\"" + userInput + "\"" + palindromeMessage(isPalindrome);
 }
 
-function parseUserInput(userInput){
+function parseUserInput(userInput) {
     let userInputOnlyLetters = discardSpecialCharacters(userInput);
     let userInputOnlyLettersLowerCase = userInputOnlyLetters.toLowerCase();
     return userInputOnlyLettersLowerCase;
 }
 
-function discardSpecialCharacters(userInput){
+function discardSpecialCharacters(userInput) {
     let letters = /^[A-Za-z]+$/;
     let inputLettersOnly = "";
-    for (let i = 0; i < userInput.length; i++){
-        if (userInput[i].match(letters)){
+    for (let i = 0; i < userInput.length; i++) {
+        if (userInput[i].match(letters)) {
             inputLettersOnly += userInput[i];
         }
     }
     return inputLettersOnly;
 }
 
-function verifyPalindrome(condensedUserInput){
+function verifyPalindrome(condensedUserInput) {
     let isPalindrome = false;
-    for (let i = 0; i < condensedUserInput.length / 2; i++){
+    for (let i = 0; i < condensedUserInput.length / 2; i++) {
         if (condensedUserInput[i] !== condensedUserInput[condensedUserInput.length - i - 1]){
             return isPalindrome;
         }
@@ -126,16 +126,39 @@ function verifyPalindrome(condensedUserInput){
     return isPalindrome;
 }
 
-function palindromeMessage(isPalindrome){
+function palindromeMessage(isPalindrome) {
     let message;
-    if(isPalindrome){
+    if(isPalindrome) {
         message = " is a palindrome";
     }
-    else{
+    else {
         message = " is not a palindrome";
     }
     return message;
 }
 
+// Happy Numbers
 
+// Prime Numbers
 
+function printPrimeNumbers() {
+    let primeNumbers = "";
+    for (let i = 1; i < 101; i++) {
+        if (numberIsPrime(i)) {
+            primeNumbers += i + ", ";
+        }
+    }
+    primeNumbers = primeNumbers.slice(0, primeNumbers.length - 2);
+    document.getElementById("primeNumbers").innerHTML = primeNumbers;
+}
+
+function numberIsPrime(number) {
+    let isPrime = false;
+    for (let i = 2; i < number; i++) {
+        if (number % i === 0) {
+            return isPrime;
+        }
+    }
+    isPrime = true;
+    return isPrime;
+}
